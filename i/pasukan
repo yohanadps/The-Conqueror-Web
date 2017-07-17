@@ -1,0 +1,44 @@
+<?php
+include("includes/ceksession.php");
+$query="select * from pasukan";
+$result=mysqli_query($conn,$query);
+$i=0;
+while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)){
+$i++;
+	$nama[$i]=$row['nama'];
+	$atk[$i]=$row['atk'];
+	$def[$i]=$row['def'];
+	syarat_level[$i]=$row['syarat_level'];
+}
+	mysqli_close($conn);
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="includes/sp/sp_add_pasukan">
+<input name="in_nama" type="text" id="in_nama" />
+<input name="in_atk" type="text" id="in_atk" />
+<input name="in_def" type="text" id="in_def" />
+<input name="in_syarat" type="text" id="in_syarat" />
+<input type="submit" name="button" id="button" />
+</form>
+<table>
+<tr>
+<th>nama</th>
+<th>atk</th>
+<th>def</th>
+<th>syarat_level</th>
+</tr>
+<?php for ($i=1;$i<=sizeof($nama);$i++){ ?>
+<tr>
+<td><?php echo $nama[$i] ?></td>
+<td><?php echo $atk[$i] ?></td>
+<td><?php echo $def[$i] ?></td>
+<td><?php echo $syarat[$i] ?></td>
+</tr>
+<?php } ?>
+</table>
+</body>
+</html>
